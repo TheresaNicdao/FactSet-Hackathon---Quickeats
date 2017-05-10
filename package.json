@@ -4,7 +4,10 @@
   "private": true,
   "dependencies": {
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-google-maps": "^6.3.0",
+    "react-slider": "^0.7.0",
+    "zomato.js": "^1.0.4"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
