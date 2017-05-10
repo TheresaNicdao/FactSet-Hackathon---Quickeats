@@ -47,7 +47,9 @@ class App extends Component {
         <PriceFilter
           onChange={this.handlePriceFilterChange} />
 
-        <Randomizer />
+        <Randomizer 
+          choices={this.getNearbyRestos()}
+        />
 
         <RestoLocator />
 
@@ -72,14 +74,14 @@ class App extends Component {
             latitude: position.coords.latitude
           }
         });
-        this.getNearbyRestos();
+        this.getLocationData();
       });
     } else {
       console.log("Geolocation is not supported by this browser.");
     }
   }
 
-  getNearbyRestos() {
+  getLocationData() {
     this.zapi.geocode({
       lat: this.state.position.latitude,
       lon: this.state.position.longitude
@@ -93,6 +95,11 @@ class App extends Component {
   getCuisineFilters() {
     const { data } = this.state;
     return data.popularity ? data.popularity.top_cuisines : [];
+  }
+
+  getNearbyRestos() {
+    const { data } = this.state;
+    return data.nearby_restaurants ? data.nearby_restaurants : [];
   }
 }
 
