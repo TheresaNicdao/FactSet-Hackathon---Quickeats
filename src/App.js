@@ -158,12 +158,14 @@ class App extends Component {
 
   getNearbyRestos() {
     const { data } = this.state;
+    let nearbyRestos = [];
 
-    let rawRestaurants = data.nearby_restaurants;
-    let filteredRestaurants = rawRestaurants.filter(this.filterRestaurants);
-    console.log(rawRestaurants);
+    if (data.nearby_restaurants) {
+      let rawRestaurants = data.nearby_restaurants;
+      nearbyRestos = rawRestaurants.filter(this.filterRestaurants);
+    }
 
-    return data.nearby_restaurants ? data.nearby_restaurants : [];
+    return nearbyRestos;
   }
 
   

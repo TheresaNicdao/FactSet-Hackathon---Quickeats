@@ -22,9 +22,9 @@ class CuisineFilter extends Component {
 
     return choices.map((choice) =>{
       return(
-        <li>
+        <li key={choice}>
           <input type="checkbox" name={choice} id={choice} className="checkbox" onChange={(choice) => this.props.passCuisineValue(choice)}/>
-          <label for={choice}> {choice} </label>
+          <label htmlFor={choice}> {choice} </label>
         </li>
       );
     });
