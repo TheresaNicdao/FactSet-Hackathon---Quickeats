@@ -133,18 +133,31 @@ class App extends Component {
   }
 
   getUserLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.setState({
-          position: {
-            longitude: position.coords.longitude,
-            latitude: position.coords.latitude
-          }
-        }, this.getLocationData);
-      });
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition((position) => {
+    //     this.setState({
+    //       position: {
+    //         longitude: position.coords.longitude,
+    //         latitude: position.coords.latitude
+    //       }
+    //     }, this.getLocationData);
+    //   });
+    // } else {
+    //   console.log("Geolocation is not supported by this browser.");
+    // }
+
+    fetch("http://ip-api.com/json?fields=lat,lon").then(function(response) {
+      return response.json();
+    }).then((response) => {
+      this.setState({
+        position: {
+          longitude: response.lon,
+          latitude: response.lat
+        }
+      }, this.getLocationData);
+    }).catch(function(error) {
+      console.log(error);
+    });
   }
 
   getLocationData() {
