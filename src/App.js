@@ -35,6 +35,7 @@ class App extends Component {
     this.setCuisineValue = this.setCuisineValue.bind(this);
     this.setRestaurantValue = this.setRestaurantValue.bind(this);
     this.filterRestaurants = this.filterRestaurants.bind(this);
+    this.renderResult = this.renderResult.bind(this);
   }
   
   componentDidMount() {
@@ -78,7 +79,21 @@ class App extends Component {
           choices={this.getNearbyRestos()}
         />
 
+        {this.renderResult()}
+
         {restoLocator}
+      </div>
+    );
+  }
+
+  renderResult() {
+    if (!this.state.restaurant.name) return <span />;
+
+    return (
+      <div className="result">
+        {this.state.restaurant.name} 
+        <img src={this.state.restaurant.featured_image} alt="whatever" />
+        Rating {this.state.restaurant.user_rating.aggregate_rating}
       </div>
     );
   }
@@ -163,7 +178,7 @@ class App extends Component {
       nearbyRestos = rawRestaurants.filter(this.filterRestaurants);
     }
 
-    return nearbyRestos;
+    return data.nearby_restaurants;
   }
 }
 
