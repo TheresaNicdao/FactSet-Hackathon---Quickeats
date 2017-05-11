@@ -1,3 +1,4 @@
+import "../../assets/styles/PriceFilter.css";
 import React, { Component } from 'react';
 import ReactSlider from "react-slider";
 
@@ -29,8 +30,18 @@ class PriceFilter extends Component {
           pearling={true}
           max={this.props.max}
           minDistance={500}>
-          <div className="price-filter-handle">{this.state.min}</div>
-          <div className="price-filter-handle">{this.state.max}</div>
+          <div className="price-filter-handle">
+            <div role="tooltip" className="tooltip top custom-tooltip">
+              <div className="tooltip-arrow"></div>
+              <div className="tooltip-inner left">{this.state.min}</div>
+            </div>
+          </div>
+          <div className="price-filter-handle">
+            <div role="tooltip" className="tooltip top custom-tooltip">
+              <div className="tooltip-arrow"></div>
+              <div className="tooltip-inner right">{this.state.max}</div>
+            </div>
+          </div>
         </ReactSlider>
       </div>
     );

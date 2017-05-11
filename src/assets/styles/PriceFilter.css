@@ -1,0 +1,75 @@
+.slider {
+  position: relative;
+  margin: 32px auto;
+  width: 500px;
+  display: block;
+  background: #565656;
+  height: 7px;
+  box-shadow: 0 1px 0px rgba(255, 255, 255, 0.25), inset 0 0 4px rgba(0, 0, 0, 0.9);
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+}
+
+.slider .price-filter-handle {
+  position: absolute;
+  top: -8px;
+  margin-left: -11px;
+  z-index: 2;
+  height: 24px;
+  width: 24px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background-color: #d4d4d4;
+  background-image: url(https://s3.amazonaws.com/codepen/chrome_radial.jpg);
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  border: 0px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 2px rgba(0, 0, 0, 0.4), inset 0 0px 1px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.6), 0 4px 2px rgba(0, 0, 0, 0.2), 0 9px 4px rgba(0, 0, 0, 0.1), inset 0 2px 1px white;
+  outline: none;
+}
+
+.slider .price-filter-handle .custom-tooltip {
+  text-align: center;
+}
+
+.slider .price-filter-handle .custom-tooltip .tooltip-inner {
+  display: inline-block;
+  top: -60px;
+  opacity: 1;
+  position: relative;
+  padding: 6px;
+  background: #e94949;
+  border-radius: 3px;
+  color: white;
+  box-shadow: inset 0 0 4px rgba(88, 88, 88, 0.5), inset 0 0 2px rgba(0, 0, 0, 0.3); 
+}
+
+.slider .price-filter-handle .custom-tooltip .tooltip-inner.left {
+  left: -18px;
+  float: right;
+}
+
+.slider .price-filter-handle .custom-tooltip .tooltip-inner.right {
+  right: -18px;
+}
+
+.slider .price-filter-handle .custom-tooltip.top .tooltip-arrow {
+  display: inline-block;
+	width: 8px;
+  height: 8px;
+  top: -18px;
+  position: relative;
+  background: #e94949;
+  border-radius: 8px;
+  box-shadow: inset 0 0 4px rgba(88, 88, 88, 0.5), inset 0 0 2px rgba(0, 0, 0, 0.3); 
+}
+
+.slider .bar-1 {
+  height: 7px;
+  background-color: #e94949;
+  box-shadow: inset 0 0 4px rgba(88, 88, 88, 0.5), inset 0 0 2px rgba(0, 0, 0, 0.3);
+}
