@@ -41,6 +41,22 @@ class App extends Component {
   
   render() {
     let priceRange = this.getPriceRange();
+    const { position, restaurant } = this.state;
+
+    let restoLocator = null;
+
+    if (restaurant.location) {
+      console.log(restaurant.name);
+      
+      restoLocator =
+        <RestoLocator 
+          origin={position}
+          destination={{
+            latitude: restaurant.location.latitude,
+            longitude: restaurant.location.longitude
+          }} />
+      ;
+    }
 
     return (
       <div className="App">
@@ -61,7 +77,7 @@ class App extends Component {
           choices={this.getNearbyRestos()}
         />
 
-        <RestoLocator />
+        {restoLocator}
 
       </div>
     );
@@ -91,7 +107,6 @@ class App extends Component {
   }
 
   setRestaurantValue(restaurantValue) {
-    console.log(this.state.restaurant);
     this.setState({
       restaurant: restaurantValue
     });
