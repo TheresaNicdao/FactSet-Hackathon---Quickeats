@@ -34,6 +34,7 @@ class App extends Component {
     this.getPriceRange = this.getPriceRange.bind(this);
     this.setCuisineValue = this.setCuisineValue.bind(this);
     this.setRestaurantValue = this.setRestaurantValue.bind(this);
+    this.setPriceRange = this.setPriceRange.bind(this);
     this.filterRestaurants = this.filterRestaurants.bind(this);
     this.renderResult = this.renderResult.bind(this);
   }
@@ -72,6 +73,7 @@ class App extends Component {
         <PriceFilter
           min={priceRange.min}
           max={priceRange.max}
+          passPriceRange={this.setPriceRange}
           onChange={this.handlePriceFilterChange} />
 
         <Randomizer 
@@ -104,6 +106,15 @@ class App extends Component {
 
   handlePriceFilterChange() {
 
+  }
+
+  setPriceRange(priceRange) {
+    this.setState({
+      priceRange: {
+        min: priceRange[0],
+        max: priceRange[1]
+      }
+    });
   }
 
   setCuisineValue(event) {
@@ -164,20 +175,25 @@ class App extends Component {
   }
 
   filterRestaurants(restau) {
-    if(restau.restaurant.currency === 'P'){
-      return;
+    let filterCuisines = restau.restaurant.cuisines.split(",");
+
+    for(let cuisine in this.state.cuisines) {
+      if(filterCuisines.includes(this.state.cuisines[cuisine]) &&
+        restau.restaurant.average_cost_for_two >= this.state.priceRange.min &&
+        restau.restaurant.average_cost_for_two <= this.state.priceRange.max){
+        return;
+      }
     }
   }
 
   getNearbyRestos() {
-    const { data } = this.state;
+    const { data,priceRange } = this.state;
     let nearbyRestos = [];
 
     if (data.nearby_restaurants) {
       let rawRestaurants = data.nearby_restaurants;
       nearbyRestos = rawRestaurants.filter(this.filterRestaurants);
     }
-
     return data.nearby_restaurants;
   }
 }

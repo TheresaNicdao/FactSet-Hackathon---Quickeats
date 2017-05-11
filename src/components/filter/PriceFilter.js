@@ -10,7 +10,6 @@ class PriceFilter extends Component {
       min: 0,
       max: 0
     };
-
     this.handleSliderValueChange = this.handleSliderValueChange.bind(this);
   }
 
@@ -22,6 +21,8 @@ class PriceFilter extends Component {
   }
 
   render() {
+    const {min, max} = this.props;
+
     return (
       <div className="price-filter">
         <ReactSlider withBars
@@ -50,6 +51,7 @@ class PriceFilter extends Component {
       min: value[0],
       max: value[1]
     });
+    this.props.passPriceRange(value);
   }
 }
 
