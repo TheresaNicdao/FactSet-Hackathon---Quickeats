@@ -44,19 +44,18 @@ class App extends Component {
     let priceRange = this.getPriceRange();
     const { position, restaurant } = this.state;
 
-    let restoLocator = null;
+    let restoLocator = [];
 
-    if (restaurant.location) {
-      console.log(restaurant.name);
-      
-      restoLocator =
-        <RestoLocator 
+    if (this.state.data.nearby_restaurants) {
+      restoLocator = this.state.data.nearby_restaurants.map((resto) => {
+        return <RestoLocator
+          key={resto.restaurant.name}
           origin={position}
           destination={{
-            latitude: restaurant.location.latitude,
-            longitude: restaurant.location.longitude
+            latitude: resto.restaurant.location.latitude,
+            longitude: resto.restaurant.location.longitude
           }} />
-      ;
+      });
     }
 
     return (
@@ -120,13 +119,13 @@ class App extends Component {
   getUserLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
         this.setState({
           position: {
             longitude: position.coords.longitude,
             latitude: position.coords.latitude
           }
-        });
-        this.getLocationData();
+        }, this.getLocationData());
       });
     } else {
       console.log("Geolocation is not supported by this browser.");
@@ -151,7 +150,7 @@ class App extends Component {
 
   filterRestaurants(restau) {
     if(restau.restaurant.currency === 'P'){
-      console.log(restau.restaurant.name);
+      // console.log(restau.restaurant.name);
       return;
     }
   }
