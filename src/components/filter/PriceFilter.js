@@ -1,28 +1,33 @@
 import React, { Component } from 'react';
 import ReactSlider from "react-slider";
 
-const DEFAULT_MIN = 0, DEFAULT_MAX = 100;
-
 class PriceFilter extends Component {
   constructor() {
     super();
 
     this.state = {
-      min: DEFAULT_MIN,
-      max: DEFAULT_MAX
+      min: 0,
+      max: 0
     };
 
     this.handleSliderValueChange = this.handleSliderValueChange.bind(this);
+  }
+
+  componentDidMount() {
+    const { min, max } = this.props;
+    this.setState({
+      min, max
+    });
   }
 
   render() {
     return (
       <div className="price-filter">
         <ReactSlider withBars
-          defaultValue={[ DEFAULT_MIN, DEFAULT_MAX ]}
+          defaultValue={[ this.props.min, this.props.max ]}
           onChange={this.handleSliderValueChange}
           pearling={true}
-          max={10000}
+          max={this.props.max}
           minDistance={500}>
           <div className="price-filter-handle">{this.state.min}</div>
           <div className="price-filter-handle">{this.state.max}</div>

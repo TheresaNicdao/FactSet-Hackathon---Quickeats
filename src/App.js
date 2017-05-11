@@ -29,6 +29,7 @@ class App extends Component {
     this.handleCuisineFilterchange = this.handleCuisineFilterchange.bind(this);
     this.handlePriceFilterChange = this.handlePriceFilterChange.bind(this);
     this.getUserLocation = this.getUserLocation.bind(this);
+    this.getPriceRange = this.getPriceRange.bind(this);
   }
   
   componentDidMount() {
@@ -36,6 +37,8 @@ class App extends Component {
   }
   
   render() {
+    let priceRange = this.getPriceRange();
+
     return (
       <div className="App">
         <img src={logo} alt="logo"/>
@@ -45,6 +48,8 @@ class App extends Component {
           onChange={this.handleCuisineFilterChange} />
 
         <PriceFilter
+          min={priceRange.min}
+          max={priceRange.max}
           onChange={this.handlePriceFilterChange} />
 
         <Randomizer 
@@ -63,6 +68,11 @@ class App extends Component {
 
   handlePriceFilterChange() {
 
+  }
+
+  getPriceRange() {
+    const { data } = this.state;
+    return data.priceRange ? data.priceRange : {min: 0, max: 4000};
   }
 
   getUserLocation() {
