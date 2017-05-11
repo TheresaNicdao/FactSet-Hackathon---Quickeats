@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 
 class CuisineFilter extends Component {
+  constructor() {
+    super();
+    this.renderFilters = this.renderFilters.bind(this);
+  }
+
   render() {
     return (
       <div className="cuisine-filter">
-        Top Cuisines {this.renderFilters()}
+        TOP Cuisines Nearby
+        <ul>
+          {this.renderFilters()}
+        </ul>
       </div>
     );
   }
@@ -12,12 +20,16 @@ class CuisineFilter extends Component {
   renderFilters() {
     const { choices } = this.props;
 
-    return choices.map(choice => 
-      <button key={choice}>
-        {choice}
-      </button>
-    );
+    return choices.map((choice) =>{
+      return(
+        <li>
+          <input type="checkbox" name={choice} id={choice} className="checkbox" onChange={(choice) => this.props.passCuisineValue(choice)}/>
+          <label for={choice}> {choice} </label>
+        </li>
+      );
+    });
   }
+
 }
 
 CuisineFilter.defaultProps = {

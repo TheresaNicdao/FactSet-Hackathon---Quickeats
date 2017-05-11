@@ -20,7 +20,8 @@ class App extends Component {
         min: 0,
         max: 4000
       },
-      cuisines: [],
+      restaurant: {},
+      cuisines: [], 
       data: {}
     };
 
@@ -30,6 +31,8 @@ class App extends Component {
     this.handlePriceFilterChange = this.handlePriceFilterChange.bind(this);
     this.getUserLocation = this.getUserLocation.bind(this);
     this.getPriceRange = this.getPriceRange.bind(this);
+    this.setCuisineValue = this.setCuisineValue.bind(this);
+    this.setRestaurantValue = this.setRestaurantValue.bind(this);
   }
   
   componentDidMount() {
@@ -45,7 +48,8 @@ class App extends Component {
 
         <CuisineFilter
           choices={this.getCuisineFilters()}
-          onChange={this.handleCuisineFilterChange} />
+          onChange={this.handleCuisineFilterChange} 
+          passCuisineValue={this.setCuisineValue}/>
 
         <PriceFilter
           min={priceRange.min}
@@ -53,6 +57,7 @@ class App extends Component {
           onChange={this.handlePriceFilterChange} />
 
         <Randomizer 
+          passRestaurantValue={this.setRestaurantValue}
           choices={this.getNearbyRestos()}
         />
 
@@ -68,6 +73,28 @@ class App extends Component {
 
   handlePriceFilterChange() {
 
+  }
+
+  setCuisineValue(event) {
+    let newCuisines = this.state.cuisines;
+
+    if(event.target.checked) {
+      newCuisines.push(event.target.name);
+    }
+    else{
+      newCuisines.splice(newCuisines.indexOf(event.target.name), 1);
+    }
+
+    this.setState({
+      cuisines: newCuisines
+    });
+  }
+
+  setRestaurantValue(restaurantValue) {
+    console.log(this.state.restaurant);
+    this.setState({
+      restaurant: restaurantValue
+    });
   }
 
   getPriceRange() {
