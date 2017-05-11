@@ -33,6 +33,7 @@ class App extends Component {
     this.getPriceRange = this.getPriceRange.bind(this);
     this.setCuisineValue = this.setCuisineValue.bind(this);
     this.setRestaurantValue = this.setRestaurantValue.bind(this);
+    this.filterRestaurants = this.filterRestaurants.bind(this);
   }
   
   componentDidMount() {
@@ -62,7 +63,7 @@ class App extends Component {
         />
 
         <RestoLocator />
-
+        
       </div>
     );
   }
@@ -91,7 +92,6 @@ class App extends Component {
   }
 
   setRestaurantValue(restaurantValue) {
-    console.log(this.state.restaurant);
     this.setState({
       restaurant: restaurantValue
     });
@@ -134,10 +134,24 @@ class App extends Component {
     return data.popularity ? data.popularity.top_cuisines : [];
   }
 
+  filterRestaurants(restau) {
+    if(restau.restaurant.currency === 'P'){
+      console.log(restau.restaurant.name);
+      return;
+    }
+  }
+
   getNearbyRestos() {
     const { data } = this.state;
+
+    let rawRestaurants = data.nearby_restaurants;
+    let filteredRestaurants = rawRestaurants.filter(this.filterRestaurants);
+    console.log(rawRestaurants);
+
     return data.nearby_restaurants ? data.nearby_restaurants : [];
   }
+
+  
 }
 
 export default App;

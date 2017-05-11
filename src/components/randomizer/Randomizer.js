@@ -12,7 +12,7 @@ class Randomizer extends Component {
     return (
       <div className="randomizer">
         <button onClick={this.randomize}>R A N D O M I Z E</button>
-        {this.renderResult};
+        {this.renderResult}
       </div>
     );
   }
