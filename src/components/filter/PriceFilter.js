@@ -32,13 +32,11 @@ class PriceFilter extends Component {
           minDistance={500}>
           <div className="price-filter-handle">
             <div role="tooltip" className="tooltip top custom-tooltip">
-              <div className="tooltip-arrow"></div>
               <div className="tooltip-inner left">{this.state.min}</div>
             </div>
           </div>
           <div className="price-filter-handle">
             <div role="tooltip" className="tooltip top custom-tooltip">
-              <div className="tooltip-arrow"></div>
               <div className="tooltip-inner right">{this.state.max}</div>
             </div>
           </div>

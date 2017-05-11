@@ -38,7 +38,7 @@
 
 .slider .price-filter-handle .custom-tooltip .tooltip-inner {
   display: inline-block;
-  top: -55px;
+  top: -45px;
   opacity: 1;
   position: relative;
   padding: 6px;
@@ -49,23 +49,38 @@
 }
 
 .slider .price-filter-handle .custom-tooltip .tooltip-inner.left {
-  left: -12px;
+  left: -14px;
   float: right;
 }
 
-.slider .price-filter-handle .custom-tooltip .tooltip-inner.right {
-  right: -12px;
-}
-
-.slider .price-filter-handle .custom-tooltip.top .tooltip-arrow {
-  display: inline-block;
+.slider .price-filter-handle .custom-tooltip .tooltip-inner.left:before {
+  display: block;
+  content: " ";
 	width: 8px;
   height: 8px;
-  top: -18px;
-  position: relative;
+  right: -5px;
+  bottom: -5px;
+  position: absolute;
   background: #e94949;
-  border-radius: 8px;
-  box-shadow: inset 0 0 4px rgba(88, 88, 88, 0.5), inset 0 0 2px rgba(0, 0, 0, 0.3); 
+  border-radius: 100%;
+  box-shadow: inset 0 0 4px rgba(88, 88, 88, 0.5), inset 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+.slider .price-filter-handle .custom-tooltip .tooltip-inner.right {
+  right: -14px;
+}
+
+.slider .price-filter-handle .custom-tooltip .tooltip-inner.right:before {
+  display: block;
+  content: " ";
+	width: 8px;
+  height: 8px;
+  left: -5px;
+  bottom: -5px;
+  position: absolute;
+  background: #e94949;
+  border-radius: 100%;
+  box-shadow: inset 0 0 4px rgba(88, 88, 88, 0.5), inset 0 0 2px rgba(0, 0, 0, 0.3);
 }
 
 .slider .bar-1 {
