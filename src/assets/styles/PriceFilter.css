@@ -38,7 +38,7 @@
 
 .slider .price-filter-handle .custom-tooltip .tooltip-inner {
   display: inline-block;
-  top: -60px;
+  top: -55px;
   opacity: 1;
   position: relative;
   padding: 6px;
@@ -49,12 +49,12 @@
 }
 
 .slider .price-filter-handle .custom-tooltip .tooltip-inner.left {
-  left: -18px;
+  left: -12px;
   float: right;
 }
 
 .slider .price-filter-handle .custom-tooltip .tooltip-inner.right {
-  right: -18px;
+  right: -12px;
 }
 
 .slider .price-filter-handle .custom-tooltip.top .tooltip-arrow {
@@ -69,7 +69,23 @@
 }
 
 .slider .bar-1 {
+  display: block;
   height: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
   background-color: #e94949;
-  box-shadow: inset 0 0 4px rgba(88, 88, 88, 0.5), inset 0 0 2px rgba(0, 0, 0, 0.3);
+  -moz-transition-property: background-color;
+  -o-transition-property: background-color;
+  -webkit-transition-property: background-color;
+  transition-property: background-color;
+  -moz-transition-duration: 100ms;
+  -o-transition-duration: 100ms;
+  -webkit-transition-duration: 100ms;
+  transition-duration: 100ms;
+  box-shadow: inset 0 0 4px rgba(163, 18, 0, 0.7), inset 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.slider .active {
+  background-color: #ffa09b;
 }
