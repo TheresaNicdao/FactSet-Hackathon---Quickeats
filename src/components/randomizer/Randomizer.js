@@ -17,7 +17,6 @@ class Randomizer extends Component {
 
   randomize() {
     const { choices,passRestaurantValue } = this.props;
-
     let min = 0;
     let max = choices.length;
 

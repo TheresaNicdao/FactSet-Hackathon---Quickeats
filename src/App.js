@@ -4,6 +4,7 @@ import './App.css';
 import CuisineFilter from "./components/filter/CuisineFilter";
 import PriceFilter from "./components/filter/PriceFilter";
 import Randomizer from "./components/randomizer/Randomizer";
+import RestaurantInfo from "./components/randomizer/RestaurantInfo";
 import RestoLocator from "./components/map/RestoLocator";
 import Zomato from "zomato.js";
 
@@ -22,6 +23,7 @@ class App extends Component {
       },
       restaurant: {},
       cuisines: [], 
+      nearbyRestos: [],
       data: {}
     };
 
@@ -36,7 +38,6 @@ class App extends Component {
     this.setRestaurantValue = this.setRestaurantValue.bind(this);
     this.setPriceRange = this.setPriceRange.bind(this);
     this.filterRestaurants = this.filterRestaurants.bind(this);
-    this.renderResult = this.renderResult.bind(this);
   }
   
   componentDidMount() {
@@ -61,6 +62,11 @@ class App extends Component {
       });
     }
 
+    console.log(this.getNearbyRestos());
+    let restoInfo = this.getNearbyRestos().map((resto) => {
+      <RestaurantInfo data={resto} />
+    });
+
     return (
       <div className="App">
         <img src={logo} alt="logo"/>
@@ -81,21 +87,9 @@ class App extends Component {
           choices={this.getNearbyRestos()}
         />
 
-        {this.renderResult()}
+        {restoInfo}
 
         {restoLocator}
-      </div>
-    );
-  }
-
-  renderResult() {
-    if (!this.state.restaurant.name) return <span />;
-
-    return (
-      <div className="result">
-        {this.state.restaurant.name} 
-        <img src={this.state.restaurant.featured_image} alt="whatever" />
-        Rating {this.state.restaurant.user_rating.aggregate_rating}
       </div>
     );
   }
@@ -136,6 +130,9 @@ class App extends Component {
     this.setState({
       restaurant: restaurantValue
     });
+    console.log("val");
+    console.log(this.state.restaurant);
+    console.log(restaurantValue);
   }
 
   getPriceRange() {
@@ -191,23 +188,28 @@ class App extends Component {
     let filterCuisines = restau.restaurant.cuisines.split(",");
 
     for(let cuisine in this.state.cuisines) {
+
       if(filterCuisines.includes(this.state.cuisines[cuisine]) &&
         restau.restaurant.average_cost_for_two >= this.state.priceRange.min &&
         restau.restaurant.average_cost_for_two <= this.state.priceRange.max){
-        return;
+        return true;
       }
     }
   }
 
   getNearbyRestos() {
-    const { data,priceRange } = this.state;
-    let nearbyRestos = [];
+    const { data, priceRange, nearbyRestos } = this.state;
 
+    let filteredRestos = [];
     if (data.nearby_restaurants) {
+      if (this.state.cuisines.length === 0) return data.nearby_restaurants;
       let rawRestaurants = data.nearby_restaurants;
-      nearbyRestos = rawRestaurants.filter(this.filterRestaurants);
+      filteredRestos = rawRestaurants.filter(this.filterRestaurants);
+      console.log(filteredRestos);
+      console.log(rawRestaurants);
     }
-    return data.nearby_restaurants;
+
+    return filteredRestos;
   }
 }
 
