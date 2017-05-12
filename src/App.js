@@ -39,7 +39,6 @@ class App extends Component {
     this.setRestaurantValue = this.setRestaurantValue.bind(this);
     this.setPriceRange = this.setPriceRange.bind(this);
     this.filterRestaurants = this.filterRestaurants.bind(this);
-    this.renderResult = this.renderResult.bind(this);
     this.renderLoader = this.renderLoader.bind(this);
     this.renderApp = this.renderApp.bind(this);
   }
