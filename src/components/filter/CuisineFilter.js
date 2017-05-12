@@ -1,3 +1,4 @@
+import "../../assets/styles/CuisineFilter.css";
 import React, { Component } from 'react';
 
 class CuisineFilter extends Component {
@@ -18,13 +19,14 @@ class CuisineFilter extends Component {
   }
 
   renderFilters() {
-    const { choices } = this.props;
+    const { choices, activeFilters } = this.props;
 
-    return choices.map((choice) =>{
+    return choices.map((choice, index) =>{
       return(
-        <li key={choice}>
+        <li key={index} className={activeFilters.indexOf(choice) >= 0 ? "active": undefined}>
+          <h4>{choice}</h4>
           <input type="checkbox" name={choice} id={choice} className="checkbox" onChange={(choice) => this.props.passCuisineValue(choice)}/>
-          <label htmlFor={choice}> {choice} </label>
+          <label htmlFor={choice}>&#10004;</label>
         </li>
       );
     });

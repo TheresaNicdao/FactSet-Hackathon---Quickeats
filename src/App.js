@@ -69,10 +69,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        <img src={logo} alt="logo"/>
+        <img src={logo} alt="logo" className="App-logo"/>
 
         <CuisineFilter
           choices={this.getCuisineFilters()}
+          activeFilters={this.state.cuisines}
           onChange={this.handleCuisineFilterChange} 
           passCuisineValue={this.setCuisineValue}/>
 
