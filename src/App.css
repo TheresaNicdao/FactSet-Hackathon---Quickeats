@@ -3,8 +3,17 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
   height: 80px;
+  margin-top: 25px;
+  transition: margin-top .40s, height .40s;
+  transition-timing-function: ease-in-out;
+}
+
+.App-logo.loading {
+  margin-top: 250px;
+  height: 150px;
+  transform-origin: 50% 42%;
+  animation: App-logo-spin infinite 1s ease-in-out;
 }
 
 .App-header {
@@ -19,6 +28,10 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from { transform: rotate(720deg); }
+  to { transform: rotate(0deg); }
+}
+
+.loader-message {
+  color: #e94949;
 }
