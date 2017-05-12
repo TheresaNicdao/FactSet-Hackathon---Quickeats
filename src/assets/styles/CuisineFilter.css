@@ -53,8 +53,8 @@
   display: inline-block;
   background: #ccc;
   width: 24px;
-  height: 24px;
-  border-radius: 2px;
+  height: 21px;
+  border-radius: 100%;
   position: absolute;
   right: 40px;
   text-align: center;
