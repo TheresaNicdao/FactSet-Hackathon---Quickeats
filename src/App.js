@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './assets/quickeats.png';
 import './App.css';
+import { isObjectEmpty } from "./libraries/utils";
 import CuisineFilter from "./components/filter/CuisineFilter";
 import PriceFilter from "./components/filter/PriceFilter";
 import Randomizer from "./components/randomizer/Randomizer";
@@ -37,6 +38,8 @@ class App extends Component {
     this.setPriceRange = this.setPriceRange.bind(this);
     this.filterRestaurants = this.filterRestaurants.bind(this);
     this.renderResult = this.renderResult.bind(this);
+    this.renderLoader = this.renderLoader.bind(this);
+    this.renderApp = this.renderApp.bind(this);
   }
   
   componentDidMount() {
@@ -44,9 +47,35 @@ class App extends Component {
   }
   
   render() {
-    let priceRange = this.getPriceRange();
-    const { position } = this.state;
+    const { data } = this.state;
+    let content = null;
 
+    if (isObjectEmpty(data)) {
+      content = this.renderLoader();
+    } else {
+      content = this.renderApp();
+    }
+
+    return (
+      <div className="App">
+        {content}
+      </div>
+    );
+  }
+
+  renderLoader() {
+    return (
+      <span>
+        <img src={logo} alt="logo" className="App-logo loading"/>
+        <h1 className="loader-message"> Hello, welcome to QuickEats! </h1>
+      </span>
+    );
+  }
+
+  renderApp() {
+    const{ position } = this.state;
+
+    let priceRange = this.getPriceRange();
     let restoLocator = [];
 
     if (this.state.data.nearby_restaurants) {
@@ -62,7 +91,7 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
+      <span>
         <img src={logo} alt="logo" className="App-logo"/>
 
         <CuisineFilter
@@ -84,8 +113,8 @@ class App extends Component {
 
         {this.renderResult()}
 
-        {restoLocator}
-      </div>
+        {/*{restoLocator}*/}
+      </span>
     );
   }
 
