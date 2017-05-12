@@ -1,3 +1,4 @@
+ import "../../assets/styles/Randomizer.css";
  import React, { Component } from 'react';
 
 class Randomizer extends Component {
@@ -9,8 +10,12 @@ class Randomizer extends Component {
   
   render() {
     return (
-      <div className="randomizer">
-        <button onClick={this.randomize}>R A N D O M I Z E</button>
+      <div className="randomizer col">
+        <div className="button raised clickable" onClick={this.randomize}>
+          <input className="toggle" type="checkbox"/>
+          <div className="anim"></div>
+          <h1>Randomize!</h1>
+        </div>
       </div>
     );
   }
