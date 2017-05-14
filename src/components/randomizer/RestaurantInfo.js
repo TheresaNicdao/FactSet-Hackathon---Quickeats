@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 class RestaurantInfo extends Component {
 	render() {
 		const { data } = this.props;
-		console.log(data);
 		
 		if(!data.name){
 			return(

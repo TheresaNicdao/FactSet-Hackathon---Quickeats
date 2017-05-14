@@ -10,8 +10,10 @@ class CuisineFilter extends Component {
   render() {
     return (
       <div className="cuisine-filter">
-        TOP Cuisines Nearby
         <ul>
+          <li key="header" className="active">
+            <h3>Top Cuisines</h3>
+          </li>
           {this.renderFilters()}
         </ul>
       </div>

@@ -91,10 +91,9 @@ class App extends Component {
       });
     }
 
-    console.log(this.getNearbyRestos());
-    let restoInfo = this.getNearbyRestos().map((resto) => {
-      <RestaurantInfo data={resto} />
-    });
+    // let restoInfo = this.getNearbyRestos().map((resto) => {
+    //   <RestaurantInfo data={resto} />
+    // });
 
     return (
       <span>
@@ -117,7 +116,7 @@ class App extends Component {
           choices={this.getNearbyRestos()}
         />
 
-        {restoInfo}
+        <RestaurantInfo data={this.state.restaurant} />
 
         {/*{restoLocator}*/}
       </span>
@@ -160,9 +159,6 @@ class App extends Component {
     this.setState({
       restaurant: restaurantValue
     });
-    console.log("val");
-    console.log(this.state.restaurant);
-    console.log(restaurantValue);
   }
 
   getPriceRange() {
@@ -235,8 +231,6 @@ class App extends Component {
       if (this.state.cuisines.length === 0) return data.nearby_restaurants;
       let rawRestaurants = data.nearby_restaurants;
       filteredRestos = rawRestaurants.filter(this.filterRestaurants);
-      console.log(filteredRestos);
-      console.log(rawRestaurants);
     }
 
     return filteredRestos;
