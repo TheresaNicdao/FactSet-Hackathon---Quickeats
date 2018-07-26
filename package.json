@@ -10,7 +10,7 @@
     "zomato.js": "^1.0.4"
   },
   "devDependencies": {
-    "react-scripts": "0.9.5"
+    "react-scripts": "^0.9.5"
   },
   "scripts": {
     "start": "react-scripts start",
